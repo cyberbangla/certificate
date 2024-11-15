@@ -1,0 +1,291 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    background-color: #f4f4f9;
+    font-family: Arial, sans-serif;
+    color: #302c2c;
+    padding: 20px;
+}
+
+.header {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+}
+
+.header .logo {
+    width: 38px; 
+    margin-top: 5px;
+    max-width: 200px;
+}
+
+.header h1 {
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 500;
+    margin-top: 5px;
+    font-size: 1.8rem;
+    color: #218838;
+}
+
+.input-form {
+    max-width: 400px;
+    margin: 20px auto;
+    padding: 20px;
+    background-color: #ffffff;
+    border-radius: 8px;
+    box-shadow: 0 4px 10px rgba(57, 50, 50, 0.158);
+    font-family: Arial, sans-serif;
+}
+
+.input-form h2 {
+    font-size: 1.6em;
+    color: #333;
+    margin-bottom: 15px;
+    text-align: center;
+}
+
+.input-form label {
+    display: block;
+    font-weight: bold;
+    color: #555;
+    margin-top: 15px;
+    margin-bottom: 5px;
+}
+
+.input-form input {
+    width: 100%;
+    padding: 8px;
+    margin-bottom: 10px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    font-size: 1em;
+    color: #333;
+}
+
+.input-form input:focus {
+    border-color: #5b9bd5;
+    outline: none;
+}
+
+.input-form button {
+    width: 100%;
+    padding: 10px;
+    background-color: #28a745;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    font-size: 1em;
+    font-weight: bold;
+    cursor: pointer;
+    margin-top: 20px;
+    transition: background-color 0.3s, transform 0.2s;
+}
+
+.input-form button:hover {
+    background-color: #218838;
+    transform: translateY(-2px);
+}
+
+/* Certificate Styling */
+.certificate {
+    width: 297mm;    /* Width for landscape A4 */
+    height: 210mm;   /* Height for landscape A4 */
+    padding: 20mm;   /* Optional padding */
+    background: #fff url('img/bg.png') center/cover no-repeat;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    box-shadow: 0 0 15px rgba(0, 0, 0, 0.1);
+    text-align: center;
+    margin: 20px auto;
+}
+
+.border-top,
+.border-bottom {
+    position: absolute;
+    width: 150px;
+    height: 150px;
+    background-color: #322d2d00;
+    clip-path: polygon(0 0, 100% 0, 0 100%);
+}
+
+.border-top {
+    top: 0;
+    left: 0;
+}
+
+.border-bottom {
+    bottom: 0;
+    right: 0;
+    transform: rotate(180deg);
+}
+
+.content {
+    text-align: center;
+    color: #333;
+}
+
+.title h2 {
+    font-family: 'Abhaya Libre', serif;
+    font-weight: 390;
+    font-size: 4.4rem;
+    margin-top: 8px;
+}
+
+.title p {
+    font-family: 'Abhaya Libre', serif;
+    font-weight: 400;
+    font-size: 1.9rem;
+    margin-top: 3px;
+    letter-spacing: 0.23em;
+}
+
+.recipient h3 {
+    font-family: 'Raleway', sans-serif;
+    font-weight: 400;
+    font-size: 1.2rem;
+    margin-top: 15px;
+    text-transform: uppercase;
+    color: #716C6E;
+}
+
+.course-name h4 {
+    font-family: 'Raleway', sans-serif;
+    font-weight: 700;
+    font-size: 1.6rem;
+    margin-top: 18px;
+    border-bottom: 1.5px solid #ddd;
+    display: inline-block;
+    padding-bottom: 5px;
+    text-transform: uppercase;
+}
+
+.recipient p {
+    font-size: 1.5em;
+    color: #555;
+    margin-top: 5px;
+}
+.recipient h1 {
+    font-family: 'Great Vibes', cursive;
+    font-weight: 700;
+    font-size: 3rem;
+    margin-top: 23px;
+    border-bottom: 1.5px solid #555; 
+    display: inline-block;
+    padding-bottom: 5px;
+}
+
+.course-name p {
+    font-family: 'Open Sans', sans-serif;
+    font-weight: 400;
+    font-size: 1em;
+    color: #555;
+    margin: 10px 20px;
+    line-height: 1.5;
+    margin-top: 22px;
+}
+
+.footer {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: 55px;
+    height: 100px; 
+}
+.signature {
+    text-align: center;
+    display: flex;
+    font-size: 1.1em;
+    margin-bottom: 50px;
+    margin-left: 140px;
+    margin-right: 140px;
+    flex-direction: column;
+}
+.signature img {
+    margin-bottom: 0.5px;
+}
+
+.signature span {
+    font-size: 0.9em;
+    color: #777;
+    margin-top: 5px;
+}
+.signature:first-child {
+    text-align: left,50px;
+    
+}
+.signature p {  
+    font-weight: bold;
+}
+.signature:last-child {
+    text-align: right,50px;
+    padding: left 20px; 
+
+}
+
+.details {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 15px;
+    font-size: 0.9em;
+    color: #333;
+    font-weight: 500;
+    margin-top: 20px;
+    
+}
+.details span {
+    font-size: 0.9em;
+    color: #777;}
+.details p {
+    margin-top: 15px;
+    flex: 1; 
+}
+
+.details p:first-child {
+    text-align: left,50px;
+}
+
+.details p:last-child {
+    text-align: right,50px;
+}
+
+button.download-btn {
+    margin-top: 20px;
+    padding: 10px 20px;
+    background-color: #007bff; /* Blue background */
+    color: #fff; /* White text */
+    border: none; /* No border */
+    border-radius: 5px; /* Rounded corners */
+    font-size: 1em; /* Font size */
+    font-weight: bold; /* Bold text */
+    cursor: pointer; /* Pointer cursor on hover */
+    transition: background-color 0.3s, transform 0.2s; /* Smooth transitions */
+}
+
+button.download-btn:hover {
+    background-color: #0056b3; /* Darker blue on hover */
+    transform: translateY(-2px); /* Slightly lift the button */
+}
+
+button.download-btn:active {
+    background-color: #004085; /* Even darker blue when pressed */
+    transform: translateY(0); /* Reset position */
+}
+
+.ceo-signature {
+    height: auto;
+    width: 100px;
+}
+
+.md-signature{
+    height: auto;
+    width: 120px;
+}

@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Certificate Template</title>
+    <!-- Bootstrap CSS -->
+    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/5.3.0/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@800&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Abhaya+Libre:wght@400&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Raleway:wght@400;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Great+Vibes&display=swap" rel="stylesheet">
+</head>
+<body>
+<div class="form-container">
+        <h3>Enter Details</h3>
+        <form id="certificateForm">
+            <label for="recipient-name">Recipient Name:</label>
+            <input type="text" id="recipient-name" placeholder="Enter recipient's name"><br><br>
+            
+            <label for="course-name">Course Name</label>
+            <input type="text" id="course-name" placeholder="Course Name"><br><br>
+
+            <label for="course-topic">Course Topic</label>
+            <input type="text" id="course-topic" placeholder="Course Topic"><br><br>
+
+            <label for="student-id">Student ID</label>
+            <input type="text" id="student-id" placeholder="Enter Student ID"><br><br>
+
+            <label for="issue-date">Issue Date</label>
+            <input type="date" id="issue-date" placeholder="Isuue Date"><br><br>
+
+            <label for="course-duration">Course Duration</label>
+            <input type="text" id="course-duration" placeholder="Enter Course Duration (e.g., 6 months)"><br><br>
+
+            <button type="button" onclick="generateCertificateFromForm()">Generate Certificate</button>
+            <button type="button" onclick="downloadAllPDFs()">Download All PDFs</button>
+        </form>
+        <br>
+        <input type="file" id="csv-upload" onchange="handleCSVUpload(event)">
+    </div>
+
+    <div id="certificateContainer"></div>
+
+    <script>
+        // Function to generate a single certificate based on the form data
+        function generateCertificate(name, courseName, courseTopic, studentID, issueDate, courseDuration) {
+            const certificate = document.createElement("div");
+            certificate.className = "certificate";
+            certificate.id = "certificate"; // Add an ID for PDF generation
+            certificate.innerHTML = `
+
+        <div class="content">
+            <div class="header">
+                <img src="img/logo.png" alt="CB Logo" class="logo">
+                <h1>CYBER BANGLA</h1>
+            </div>
+        </div>
+    
+        <div class="title">
+            <h2>CERTIFICATE</h2>
+            <p class="text-secondary">OF APPRECIATION</p>
+        </div>
+        
+        <div class="recipient">
+            <h3>This certificate is proudly presented to</h3>
+            <h1>${name}</h1>
+        </div>
+    
+        <div class="course-name">
+            <h4>${courseName}</h4>
+            <p>We commend <strong>${name}</strong> for his exemplary performance and commitment to ${courseTopic}.
+            </p>
+        </div>
+    
+        <div class="footer">
+            <div class="signature">
+                <img src="img/noman.png" alt="M M A AL Noman" class="ceo-signature">
+                  <p>M M A Al Noman</p>
+                  <span>Co-Founder & CEO</span>
+            </div>
+            <div class="signature">
+                <img src="img/rakib.png" alt="M M A AL Noman" class="md-signature">
+                  <p>Rakib Ahmed</p>
+                  <span>Managing Director</span>
+            </div>
+        </div>
+    
+        <div class="details">
+            <p>STUDENT ID: <b>${studentID}</b></p>
+            <p>ISSUE DATE: <b>${issueDate}</b></p>
+            <p>COURSE DURATION: <b>${courseDuration}</b></p>
+        </div>
+    </div>
+     `;
+            document.getElementById("certificateContainer").appendChild(certificate);
+        }
+
+        // Generate certificates based on form input
+        function generateCertificateFromForm() {
+            const name = document.getElementById("recipient-name").value;
+            const courseName = document.getElementById("course-name").value;
+            const courseTopic = document.getElementById("course-topic").value;
+            const studentID = document.getElementById("student-id").value;
+            const issueDate = document.getElementById("issue-date").value;
+            const courseDuration = document.getElementById("course-duration").value;
+
+            generateCertificate(name, courseName, courseTopic, studentID, issueDate, courseDuration);
+        }
+
+        // Handle CSV file upload and generate certificates for all students
+        function handleCSVUpload(event) {
+            const file = event.target.files[0];
+            if (file && file.type === "text/csv") {
+                const reader = new FileReader();
+                reader.onload = function (e) {
+                    const csvContent = e.target.result;
+                    const rows = csvContent.split("\n");
+                    rows.forEach((row, index) => {
+                        if (index > 0 && row.trim() !== "") {
+                            const data = row.split(",");
+                            const [name, courseName, courseTopic, studentID, issueDate, courseDuration] = data;
+                            generateCertificate(name, courseName, courseTopic, studentID, issueDate, courseDuration);
+                        }
+                    });
+                };
+                reader.readAsText(file);
+            } else {
+                alert("Please upload a valid CSV file.");
+            }
+        }
+
+        // Download all certificates as PDFs
+        function downloadAllPDFs() {
+            const certificates = document.querySelectorAll(".certificate");
+            certificates.forEach((certificate, index) => {
+                html2pdf(certificate, {
+                    margin: 0,
+                    filename: `certificate_${index + 1}.pdf`,
+                    image: { type: 'jpeg', quality: 0.98 },
+                    html2canvas: { scale: 2 },
+                    jsPDF: { unit: 'in', format: 'letter', orientation: 'portrait' }
+                });
+            });
+        }
+    </script>
+</body>
+</html>
